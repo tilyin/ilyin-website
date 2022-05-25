@@ -3,7 +3,14 @@ kind: Ingress
 metadata:
   name: ilyin-website-ingress
   namespace: ilyin-website
+  annotations:
+    kubernetes.io/ingress.class: public
+    cert-manager.io/cluster-issuer: letsencrypt
 spec:
+  tls:
+  - hosts:
+    - www.ilyin.live
+    secretName: www.ilyin.website-tls
   rules:
   - host: www.ilyin.website
     http:
