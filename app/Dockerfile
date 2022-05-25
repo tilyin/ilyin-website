@@ -1,0 +1,5 @@
+# syntax=docker/dockerfile:1
+FROM nginx:1.20
+RUN apt update && apt upgrade -y && apt autoremove -y
+COPY html/ /usr/share/nginx/html/
+COPY nginx/www-ilyin-website.conf /etc/nginx/conf.d/

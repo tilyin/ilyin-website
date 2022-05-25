@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    deployment.kubernetes.io/revision: "1"
+  generation: 1
+  labels:
+    app: www-ilyin-website
+  name: www-ilyin-website-deployment
+  namespace: ilyin-website
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: www-ilyin-website
+  template:
+    metadata:
+      labels:
+        app: www-ilyin-website
+    spec:
+      containers:
+      - name: www-ilyin-website-deployment
+        image: tilyin/www-ilyin-website
+        ports:
+        - containerPort: 80        
+      dnsPolicy: ClusterFirst
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: www-ilyin-website-service
+  namespace: ilyin-website
+spec:
+  selector:
+    app: www-ilyin-website
+  ports:
+  - name: www-ilyin-website
+    protocol: TCP
+    port: 8080
+    targetPort: 80
