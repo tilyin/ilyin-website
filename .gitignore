@@ -1,2 +1,2 @@
 .gitignore
-~/git/ilyin-website/kube_conf
+/home/hobo/git/ilyin-website/kube_conf/
