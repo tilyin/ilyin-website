@@ -5,8 +5,8 @@ echo "user=USER"
 echo "password=PASSWORD"
 
 if [ -f ~/.ssh/docker ]; then
-  docker login --username $(cat ~/.ssh/docker | awk -F = '/user/ {print $2}') --password $(cat ~/.ssh/docker | awk -F = '/password/ {print $2}')
-  
+  cat ~/.ssh/docker | awk -F = '/password/ {print $2}' | docker login --username $(cat ~/.ssh/docker | awk -F = '/user/ {print $2}') --password-stdin
+
   if [[ $?>0 ]]; then
     echo -e "login unsuccessful, check credentials"
     exit 1
