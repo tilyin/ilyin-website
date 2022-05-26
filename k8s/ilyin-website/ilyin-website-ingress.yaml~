@@ -4,7 +4,7 @@ metadata:
   name: ilyin-website-ingress
   namespace: ilyin-website
   annotations:
-    kubernetes.io/ingress.class: public #nginx
+    kubernetes.io/ingress.class: public
     cert-manager.io/cluster-issuer: letsencrypt
 spec:
   tls:
