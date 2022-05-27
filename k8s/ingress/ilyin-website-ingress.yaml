@@ -2,7 +2,7 @@ apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: ilyin-website-ingress
-  namespace: ilyin-website
+  namespace: ingress
   annotations:
     kubernetes.io/ingress.class: nginx     
     cert-manager.io/cluster-issuer: letsencrypt
