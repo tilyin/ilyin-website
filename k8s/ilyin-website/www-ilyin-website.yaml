@@ -20,11 +20,13 @@ spec:
     spec:
       containers:
       - name: www-ilyin-website-deployment
-        image: tilyin/www-ilyin-website      
+        #image: tilyin/www-ilyin-website
+        image: registry.digitalocean.com/tilyin-repo/www-ilyin-website      
         ports:
         - containerPort: 3000
       imagePullSecrets:
-      - name: tilyin-dockerhub
+      #- name: tilyin-dockerhub
+      - name: registry-tilyin-repo
       dnsPolicy: ClusterFirst
 ---
 apiVersion: v1

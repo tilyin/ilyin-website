@@ -20,5 +20,10 @@ else
   exit 1
 fi
 
-docker build -t tilyin/www-ilyin-website:latest .
-docker push tilyin/www-ilyin-website
+#docker build -t tilyin/www-ilyin-website:latest .
+#docker push tilyin/www-ilyin-website
+
+doctl registry login
+
+docker build -t registry.digitalocean.com/tilyin-repo/www-ilyin-website:latest .
+docker push registry.digitalocean.com/tilyin-repo/www-ilyin-website
