@@ -21,7 +21,14 @@ spec:
       containers:
       - name: www-ilyin-website-deployment
         #image: tilyin/www-ilyin-website
-        image: registry.digitalocean.com/tilyin-repo/www-ilyin-website      
+        image: registry.digitalocean.com/tilyin-repo/www-ilyin-website
+        resources:
+          requests:
+            #memory: "64Mi"
+            cpu: "250m"
+          limits:
+            #memory: "128Mi"
+            cpu: "500m"      
         ports:
         - containerPort: 3000
       imagePullSecrets:
