@@ -4,8 +4,11 @@ echo "and has following structure:"
 echo "user=USER"
 echo "password=PASSWORD"
 
+USER=$(cat ~/.ssh/docker | awk -F = '/user/ {print $2}')
+PASSWORD=$(cat ~/.ssh/docker | awk -F = '/password/ {print $2}')
+
 if [ -f ~/.ssh/docker ]; then
-  cat ~/.ssh/docker | awk -F = '/password/ {print $2}' | docker login --username $(cat ~/.ssh/docker | awk -F = '/user/ {print $2}') --password-stdin
+  echo $PASSWORD | docker login --username $USER --password-stdin
 
   if [[ $?>0 ]]; then
     echo -e "login unsuccessful, check credentials"

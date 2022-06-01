@@ -20,9 +20,11 @@ spec:
     spec:
       containers:
       - name: www-ilyin-website-deployment
-        image: tilyin/www-ilyin-website
+        image: tilyin/www-ilyin-website      
         ports:
-        - containerPort: 80        
+        - containerPort: 3000
+      imagePullSecrets:
+      - name: tilyin-dockerhub
       dnsPolicy: ClusterFirst
 ---
 apiVersion: v1
@@ -36,5 +38,5 @@ spec:
   ports:
   - name: www-ilyin-website
     protocol: TCP
-    port: 8080
-    targetPort: 80
+    port: 3080
+    targetPort: 3000

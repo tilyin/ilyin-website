@@ -2,15 +2,15 @@ apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: ilyin-website-ingress
-  namespace: ingress
+  namespace: ilyin-website
   annotations:
     kubernetes.io/ingress.class: nginx     
-    cert-manager.io/cluster-issuer: letsencrypt
+#    cert-manager.io/cluster-issuer: letsencrypt
 spec:
-  tls:
-  - hosts:
-    - www.ilyin.website
-    secretName: www.ilyin.website-tls
+#  tls:
+#  - hosts:
+#    - mail.ilyin.website
+#    secretName: www.ilyin.website-tls
   rules:
   - host: www.ilyin.website
     http:
@@ -21,4 +21,4 @@ spec:
             service:
               name: www-ilyin-website-service
               port:
-                number: 8080
+                number: 3080
