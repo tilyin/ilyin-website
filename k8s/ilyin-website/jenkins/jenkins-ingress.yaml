@@ -1,0 +1,38 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  annotations:
+    kubernetes.io/ingress.class: nginx     
+    cert-manager.io/cluster-issuer: letsencrypt
+    meta.helm.sh/release-name: bitnami-jenkins
+    meta.helm.sh/release-namespace: jenkins
+  generation: 3
+  labels:
+    app.kubernetes.io/instance: bitnami-jenkins
+    app.kubernetes.io/managed-by: Helm
+    app.kubernetes.io/name: jenkins
+    helm.sh/chart: jenkins-10.1.3
+  name: bitnami-jenkins
+  namespace: jenkins
+  resourceVersion: "214137"
+  uid: 5cc789ff-63cb-49fe-a2c0-4f7a6769c067
+spec:
+  tls:
+  - hosts:
+    - jenkins.ilyin.website
+    secretName: jenkins.ilyin.website-tls
+  rules:
+  - host: jenkins.ilyin.website
+    http:
+      paths:
+      - backend:
+          service:
+            name: bitnami-jenkins
+            port:
+              name: http
+        path: /
+        pathType: Prefix
+status:
+  loadBalancer:
+    ingress:
+    - ip: 138.68.127.106
