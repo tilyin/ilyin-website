@@ -1,9 +1,9 @@
 pipeline {
-    agent { docker { image 'node:16.13.1-alpine' } }
+    agent { docker { image 'busybox' } }
     stages {
         stage('build') {
             steps {
-                sh 'node --version'
+                sh 'uname -a'
             }
         }
     }
