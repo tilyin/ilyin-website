@@ -22,5 +22,8 @@ echo "install Jenkins"
 
 echo
 echo "$ helm install bitnami-jenkins bitnami/jenkins --values values.yaml --install --namespace jenkins --create-namespace"
-helm install bitnami-jenkins bitnami/jenkins --values values.yaml --namespace jenkins --create-namespace
+helm install bitnami-jenkins bitnami/jenkins --values ./values.yaml --namespace jenkins --create-namespace
 # helm upgrade bitnami-jenkins bitnami/jenkins --install --values values.yaml --namespace jenkins --create-namespace
+
+# bind default ServiceAccount in jenkins namespace with cluster-admin role
+kubectl apply -f default-clusterrolebinding-jenkins.yaml -n jenkins
