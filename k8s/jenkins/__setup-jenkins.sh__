@@ -1,0 +1,25 @@
+# Release "jenkins-sqlap-ru" does not exist. Installing it now.
+# NAME: jenkins-sqlap-ru
+# LAST DEPLOYED: Mon May 30 18:48:30 2022
+# NAMESPACE: jenkins
+# STATUS: deployed
+# REVISION: 1
+# TEST SUITE: None
+# NOTES:
+# CHART NAME: jenkins
+# CHART VERSION: 10.0.8
+# APP VERSION: 2.332.2
+
+# ** Please be patient while the chart is being deployed **
+
+# 1. Get the Jenkins URL by running:
+
+# ** Please ensure an external IP is associated to the jenkins-sqlap-ru service before proceeding **
+# ** Watch the status using: kubectl get svc --namespace jenkins -w jenkins-sqlap-ru **
+
+  export SERVICE_IP=$(kubectl get svc --namespace jenkins bitnami-jenkins --template "{{ range (index .status.loadBalancer.ingress 0) }}{{ . }}{{ end }}")
+  echo "Jenkins URL: http://$SERVICE_IP/"
+
+# 2. Login with the following credentials
+  echo Username: user
+  echo Password: $(kubectl get secret --namespace jenkins bitnami-jenkins -o jsonpath="{.data.jenkins-password}" | base64 --decode)
