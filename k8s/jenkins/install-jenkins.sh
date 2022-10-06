@@ -25,5 +25,8 @@ echo "$ helm install bitnami-jenkins bitnami/jenkins --values values.yaml --inst
 helm install bitnami-jenkins bitnami/jenkins --values ./values.yaml --namespace jenkins --create-namespace
 # helm upgrade bitnami-jenkins bitnami/jenkins --install --values values.yaml --namespace jenkins --create-namespace
 
+# apply jenkins ingress
+kubectl apply -f jenkins-ingress-tls.yaml -n jenkins
+
 # bind default ServiceAccount in jenkins namespace with cluster-admin role
 kubectl apply -f default-clusterrolebinding-jenkins.yaml -n jenkins

@@ -61,6 +61,7 @@ diagnosticMode:
 ## @param image.registry Jenkins image registry
 ## @param image.repository Jenkins image repository
 ## @param image.tag Jenkins image tag (immutable tags are recommended)
+## @param image.digest Jenkins image digest in the way sha256:aa.... Please note this parameter, if set, will override the tag
 ## @param image.pullPolicy Jenkins image pull policy
 ## @param image.pullSecrets Jenkins image pull secrets
 ## @param image.debug Enable image debug mode
@@ -68,7 +69,8 @@ diagnosticMode:
 image:
   registry: docker.io
   repository: bitnami/jenkins
-  tag: 2.332.3-debian-11-r0
+  tag: 2.361.2-debian-11-r0
+  digest: ""
   ## Specify a imagePullPolicy
   ## Defaults to 'Always' if image tag is 'latest', else set to 'IfNotPresent'
   ## ref: https://kubernetes.io/docs/user-guide/images/#pre-pulling-images
@@ -88,18 +90,18 @@ image:
 
 ## @section Jenkins Configuration parameters
 ## Jenkins settings based on environment variables
-## ref: https://github.com/bitnami/bitnami-docker-jenkins#configuration
+## ref: https://github.com/bitnami/containers/tree/main/bitnami/jenkins#configuration
 
 ## @param jenkinsUser Jenkins username
 ##
-jenkinsUser: jenkins-user
+jenkinsUser: user
 ## @param jenkinsPassword Jenkins user password
 ## Defaults to a random 10-character alphanumeric string if not set
 ##
-jenkinsPassword: "WW14aGFDMWliR0ZvTFdKc1lXZ0sK"
+jenkinsPassword: ""
 ## @param jenkinsHost Jenkins host to create application URLs
 ##
-jenkinsHost: "cicd.ilyin.website"
+jenkinsHost: ""
 ## @param jenkinsHome Jenkins home directory
 ##
 jenkinsHome: /bitnami/jenkins/home
@@ -241,7 +243,7 @@ nodeSelector: {}
 ## @param tolerations Tolerations for pod assignment
 ## ref: https://kubernetes.io/docs/concepts/configuration/taint-and-toleration/
 ##
-tolerations: {}
+tolerations: []
 ## Jenkins containers' resource requests and limits
 ## ref: https://kubernetes.io/docs/user-guide/compute-resources/
 ## @param resources.limits The resources limits for the Jenkins container
@@ -338,13 +340,13 @@ customReadinessProbe: {}
 service:
   ## @param service.type Jenkins service type
   ##
-  type: ClusterIP
+  type: LoadBalancer
   ## @param service.ports.http Jenkins service HTTP port
   ## @param service.ports.https Jenkins service HTTPS port
   ##
   ports:
-    http: 30080
-    https: 30443
+    http: 80
+    https: 443
   ## Node ports to expose
   ## @param service.nodePorts.http Node port for HTTP
   ## @param service.nodePorts.https Node port for HTTPS
@@ -396,17 +398,16 @@ service:
 ingress:
   ## @param ingress.enabled Enable ingress record generation for Jenkins
   ##
-  enabled: true
+  enabled: false
   ## @param ingress.pathType Ingress path type
   ##
-  pathType: Prefix
-  ######### ImplementationSpecific
+  pathType: ImplementationSpecific
   ## @param ingress.apiVersion Force Ingress API version (automatically detected if not set)
   ##
   apiVersion: ""
   ## @param ingress.hostname Default host for the ingress record
   ##
-  hostname: cicd.ilyin.website
+  hostname: jenkins.local
   ## @param ingress.path Default path for the ingress record
   ## NOTE: You may need to set this to '/*' in order to use this with ALB ingress controllers
   ##
@@ -422,9 +423,7 @@ ingress:
   ##   kubernetes.io/ingress.class: nginx
   ##   cert-manager.io/cluster-issuer: cluster-issuer-name
   ##
-  annotations: #{}
-    kubernetes.io/ingress.class: nginx
-    cert-manager.io/cluster-issuer: letsencrypt
+  annotations: {}
   ## @param ingress.tls Enable TLS configuration for the host defined at `ingress.hostname` parameter
   ## TLS certificates will be retrieved from a TLS secret with name: `{{- printf "%s-tls" .Values.ingress.hostname }}`
   ## You can:
@@ -432,7 +431,7 @@ ingress:
   ##   - Rely on cert-manager to create it by setting the corresponding annotations
   ##   - Rely on Helm to create self-signed certificates by setting `ingress.selfSigned=true`
   ##
-  tls: true
+  tls: false
   ## DEPRECATED: Use ingress.annotations instead of ingress.certManager
   ## certManager: false
   ##
@@ -532,7 +531,7 @@ persistence:
     - ReadWriteOnce
   ## @param persistence.size Persistent Volume size
   ##
-  size: 20Gi
+  size: 8Gi
   ## @param persistence.selector Selector to match an existing Persistent Volume for Ingester's data PVC
   ## If set, the PVC can't have a PV dynamically provisioned for it
   ## E.g.
@@ -554,13 +553,15 @@ volumePermissions:
   ## @param volumePermissions.image.registry Bitnami Shell image registry
   ## @param volumePermissions.image.repository Bitnami Shell image repository
   ## @param volumePermissions.image.tag Bitnami Shell image tag (immutable tags are recommended)
+  ## @param volumePermissions.image.digest Bitnami Shell image digest in the way sha256:aa.... Please note this parameter, if set, will override the tag
   ## @param volumePermissions.image.pullPolicy Bitnami Shell image pull policy
   ## @param volumePermissions.image.pullSecrets Bitnami Shell image pull secrets
   ##
   image:
     registry: docker.io
     repository: bitnami/bitnami-shell
-    tag: 11-debian-11-r0
+    tag: 11-debian-11-r38
+    digest: ""
     pullPolicy: IfNotPresent
     ## Optionally specify an array of imagePullSecrets.
     ## Secrets must be manually created in the namespace.

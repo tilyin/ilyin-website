@@ -1,0 +1,631 @@
+<!DOCTYPE html>
+<html lang="ru-RU">
+  <body>
+    <article id="post-5496" class="post-5496 post type-post status-publish format-standard has-post-thumbnail hentry category-linux" style="height: auto !important;">
+
+      
+      <header class="entry-header">
+
+        <h1 class="entry-title">Шпаргалка по Kubectl для администраторов Kubernetes и подготовка к экзамену CKA</h1>
+        <div class="entry-meta"><span class="meta-date"><a href="https://infoit.com.ua/linux/shpargalka-po-kubectl-dlya-administratorov-kubernetes-i-podgotovka-k-ekzamenu-cka-2/" title="1:12 пп" rel="bookmark"><time class="entry-date published updated" datetime="2021-06-03T13:12:14+02:00">03.06.2021</time></a></span><span class="meta-author"> <span class="author vcard"><a class="url fn n" href="https://infoit.com.ua/author/forgero/" title="View all posts by srppz" rel="author">srppz</a></span></span><span class="meta-category"> <a href="https://infoit.com.ua/category/linux/" rel="category tag">Linux</a></span></div>
+      </header><!-- .entry-header -->
+
+      <div class="entry-content clearfix" style="height: auto !important;">
+
+        <div class="code-block code-block-2" style="margin: 8px auto; text-align: center; display: block; clear: both;">
+    <script async="" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1546989267878249" crossorigin="anonymous" data-checked-head="true"></script>
+    <ins class="adsbygoogle" style="display: block; text-align: center; height: 197px;" data-ad-layout="in-article" data-ad-format="fluid" data-ad-client="ca-pub-1546989267878249" data-ad-slot="1316485244" data-adsbygoogle-status="done" data-ad-status="unfilled"><div id="aswift_1_host" style="border: medium none; height: 197px; width: 787px; margin: 0px; padding: 0px; position: relative; visibility: visible; background-color: transparent; display: inline-block;" tabindex="0" title="Advertisement" aria-label="Advertisement"><iframe id="aswift_1" name="aswift_1" style="left:0;position:absolute;top:0;border:0;width:787px;height:197px;" sandbox="allow-forms allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts allow-top-navigation-by-user-activation" marginwidth="0" marginheight="0" vspace="0" hspace="0" allowtransparency="true" scrolling="no" src="https://googleads.g.doubleclick.net/pagead/ads?client=ca-pub-1546989267878249&amp;output=html&amp;h=197&amp;slotname=1316485244&amp;adk=2582140802&amp;adf=236379016&amp;pi=t.ma~as.1316485244&amp;w=787&amp;fwrn=4&amp;lmt=1665064562&amp;rafmt=11&amp;format=787x197&amp;url=https%3A%2F%2Finfoit.com.ua%2Flinux%2Fshpargalka-po-kubectl-dlya-administratorov-kubernetes-i-podgotovka-k-ekzamenu-cka-2%2F&amp;wgl=1&amp;dt=1665064561253&amp;bpp=1&amp;bdt=2048&amp;idt=338&amp;shv=r20221003&amp;mjsv=m202209290101&amp;ptt=9&amp;saldr=aa&amp;abxe=1&amp;prev_fmts=0x0&amp;nras=1&amp;correlator=4824109469608&amp;frm=20&amp;pv=1&amp;ga_vid=1016485242.1665064560&amp;ga_sid=1665064562&amp;ga_hid=177815262&amp;ga_fc=1&amp;rplot=4&amp;u_tz=180&amp;u_his=1&amp;u_h=1440&amp;u_w=2560&amp;u_ah=1422&amp;u_aw=2519&amp;u_cd=24&amp;u_sd=1.5&amp;adx=224&amp;ady=352&amp;biw=1663&amp;bih=1023&amp;scr_x=0&amp;scr_y=819&amp;eid=44759875%2C44759926%2C44759842%2C31070183%2C42531705%2C44769306%2C44774605%2C44773747%2C31067826&amp;oid=2&amp;pvsid=1098886100294636&amp;tmod=1372376856&amp;nvt=1&amp;ref=https%3A%2F%2Fyandex.ru%2F&amp;eae=0&amp;fc=1920&amp;brdim=431%2C79%2C431%2C79%2C2519%2C18%2C1663%2C1099%2C1663%2C1023&amp;vis=1&amp;rsz=%7C%7CEe%7C&amp;abl=CS&amp;pfx=0&amp;fu=128&amp;bc=31&amp;ifi=2&amp;uci=a!2&amp;fsb=1&amp;xpc=R8247ZVYqe&amp;p=https%3A//infoit.com.ua&amp;dtd=1020" data-google-container-id="a!2" data-load-complete="true" data-google-query-id="CKfzle7gy_oCFb4PigMdP90JoQ" width="787" height="197" frameborder="0"></iframe></div></ins>
+    <script>
+        (adsbygoogle = window.adsbygoogle || []).push({});
+    </script></div>
+    <h1 class="entry-title"><span>Шпаргалка по Kubectl для администраторов Kubernetes и подготовка к экзамену CKA</span></h1>
+    <p>&nbsp;</p>
+    <p><span>Это самоуверенный чит-лист, созданный для использования в качестве ориентира для ежедневных операций Kubernetes и администрирования, выполняемых через интерфейс командной строки с помощью&nbsp;</span><strong><span>kubectl.&nbsp;</span></strong><span>Если вы готовитесь к экзаменам CKA или CKAD, шпаргалка содержит команды, которые помогут вам быстро выполнить экзаменационные задания.&nbsp;При подготовке к экзамену не следует полностью полагаться на этот документ, а лучше пройти курс по содержанию с большой практикой.</span><span id="ezoic-pub-ad-placeholder-172" class="ezoic-adpicker-ad"></span></p>
+    <p><span>Если у вас есть команда kubectl для экономии времени, которую мы пропустили в этом посте, не стесняйтесь оставить ее в разделе комментариев.&nbsp;Мы будем рады обновить документ в любое время.</span></p>
+    <div class="code-block code-block-5" style="margin: 8px auto; text-align: center; display: block; clear: both;">
+    <a href="https://aviso.bz/?r=forgero" target="_blank"><img src="https://aviso.bz/statica/pictures/A-468-2.gif" style="width:728px;heigh:90px" alt="aviso | рекламный сервис"></a></div>
+    <p>Мы начнем с полезных общих команд, прежде чем рассмотрим команды для конкретных задач, используемые при развертывании администрирования и приложений в Kubernetes или OpenShift Cluster.</p>
+    <div class="code-block code-block-3" style="margin: 8px auto; text-align: center; display: block; clear: both;">
+    <script async="" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1546989267878249" crossorigin="anonymous" data-checked-head="true"></script>
+    <ins class="adsbygoogle" style="display: block; text-align: center; height: 197px;" data-ad-layout="in-article" data-ad-format="fluid" data-ad-client="ca-pub-1546989267878249" data-ad-slot="1124913551" data-adsbygoogle-status="done" data-ad-status="unfilled"><div id="aswift_2_host" style="border: medium none; height: 197px; width: 787px; margin: 0px; padding: 0px; position: relative; visibility: visible; background-color: transparent; display: inline-block;" tabindex="0" title="Advertisement" aria-label="Advertisement"><iframe id="aswift_2" name="aswift_2" style="left:0;position:absolute;top:0;border:0;width:787px;height:197px;" sandbox="allow-forms allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts allow-top-navigation-by-user-activation" marginwidth="0" marginheight="0" vspace="0" hspace="0" allowtransparency="true" scrolling="no" src="https://googleads.g.doubleclick.net/pagead/ads?client=ca-pub-1546989267878249&amp;output=html&amp;h=197&amp;slotname=1124913551&amp;adk=1573648242&amp;adf=1657515868&amp;pi=t.ma~as.1124913551&amp;w=787&amp;fwrn=4&amp;lmt=1665064562&amp;rafmt=11&amp;format=787x197&amp;url=https%3A%2F%2Finfoit.com.ua%2Flinux%2Fshpargalka-po-kubectl-dlya-administratorov-kubernetes-i-podgotovka-k-ekzamenu-cka-2%2F&amp;wgl=1&amp;dt=1665064561253&amp;bpp=1&amp;bdt=2048&amp;idt=338&amp;shv=r20221003&amp;mjsv=m202209290101&amp;ptt=9&amp;saldr=aa&amp;abxe=1&amp;prev_fmts=0x0%2C787x197&amp;nras=1&amp;correlator=4824109469608&amp;frm=20&amp;pv=1&amp;ga_vid=1016485242.1665064560&amp;ga_sid=1665064562&amp;ga_hid=177815262&amp;ga_fc=1&amp;rplot=4&amp;u_tz=180&amp;u_his=1&amp;u_h=1440&amp;u_w=2560&amp;u_ah=1422&amp;u_aw=2519&amp;u_cd=24&amp;u_sd=1.5&amp;adx=224&amp;ady=1321&amp;biw=1663&amp;bih=1023&amp;scr_x=0&amp;scr_y=819&amp;eid=44759875%2C44759926%2C44759842%2C31070183%2C42531705%2C44769306%2C44774605%2C44773747%2C31067826&amp;oid=2&amp;pvsid=1098886100294636&amp;tmod=1372376856&amp;nvt=1&amp;ref=https%3A%2F%2Fyandex.ru%2F&amp;eae=0&amp;fc=1920&amp;brdim=431%2C79%2C431%2C79%2C2519%2C18%2C1663%2C1099%2C1663%2C1023&amp;vis=1&amp;rsz=%7C%7CEe%7C&amp;abl=CS&amp;pfx=0&amp;fu=128&amp;bc=31&amp;ifi=3&amp;uci=a!3&amp;fsb=1&amp;xpc=YjPJJmEJXb&amp;p=https%3A//infoit.com.ua&amp;dtd=1037" data-google-container-id="a!3" data-google-query-id="CM68lu7gy_oCFSncKAUd-iIM2g" data-load-complete="true" width="787" height="197" frameborder="0"></iframe></div></ins>
+    <script>
+        (adsbygoogle = window.adsbygoogle || []).push({});
+    </script></div>
+    <p>&nbsp;</p>
+    <h2 id="h-helpful-commands-for-general-use"><span>Полезные команды для общего использования</span></h2>
+    <p><span>Ниже приведены некоторые из наиболее полезных команд общего пользования при работе с Kubernetes.</span></p>
+    <pre class="wp-block-code"><code># Display Kubernetes API Server URL
+    $ kubectl cluster-info
+
+    # Dump all cluster information
+    $ kubectl cluster-info dump
+
+    # Get kubeadm config
+    $ kubectl -n kube-system get configmap kubeadm-config -o yaml
+
+    # List all nodes in the cluster
+    $ kubectl get nodes
+
+    # Check health of cluster components
+    $ kubectl get componentstatuses
+    $ kubectl get cs
+
+    # List all API resources
+    $ kubectl api-resources
+
+    # List API versions
+    $ kubectl api-versions</code></pre>
+    <h2>1.<span>Установите kubectl</span></h2>
+    <p><span>Вот как установить kubectl в Linux и macOS:</span></p>
+    <div class="code-block code-block-6" style="margin: 8px auto; text-align: center; display: block; clear: both;">
+    <a href="https://ad-cash.net/r=76" target="_blank"><img src="https://ad-cash.net/temp/prom/b_200x301.gif" alt="" width="200" height="300"></a></div>
+    <p><strong>Linux</strong></p>
+    <pre class="wp-block-code"><code>curl -LO "https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl"
+    chmod +x ./kubectl
+    sudo mv ./kubectl /usr/local/bin/kubectl</code></pre>
+    <p><strong>macOS:</strong></p>
+    <pre class="wp-block-code"><code>curl -LO "https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/darwin/amd64/kubectl"
+    chmod +x ./kubectl
+    sudo mv ./kubectl /usr/local/bin/kubectl</code></pre>
+    <p>Подтвердите установку, проверив версию:</p>
+    <pre class="wp-block-code"><code>$ kubectl version --client
+    Client Version: version.Info{Major:"1", Minor:"19", GitVersion:"v1.19.3", GitCommit:"1e11e4a2108024935ecfcb2912226cedeafd99df", GitTreeState:"clean", BuildDate:"2020-10-14T12:50:19Z", GoVersion:"go1.15.2", Compiler:"gc", Platform:"darwin/amd64"}</code></pre>
+    <h2>2.<span>&nbsp;Включите завершение Bash.</span></h2>
+    <p><span>По умолчанию завершение Bash не включено после установки команды kubectl.&nbsp;Включите его с помощью команд ниже.</span></p>
+    <p><strong>Bash:</strong></p>
+    <pre class="wp-block-code"><code>echo 'source &lt;(kubectl completion bash)' &gt;&gt;~/.bashrc
+    source ~/.bashrc</code></pre>
+    <p><strong>zsh:</strong></p>
+    <pre class="wp-block-code"><code>echo 'source &lt;(kubectl completion zsh) &gt;&gt; ~/.zshrc
+    source ~/.zshrc</code></pre>
+    <h2>3. <span>Список и переключение контекста</span></h2>
+    <p><span>Контекст — это группа параметров доступа.&nbsp;Каждый контекст содержит кластер Kubernetes, пользователя и пространство имен.</span></p>
+    <p>Контексты листинга:</p>
+    <pre class="wp-block-code"><code>kubectl config get-contexts</code></pre>
+    <p>Переключайтесь между кластерами, задав текущий контекст в&nbsp;файле&nbsp;<em>kubeconfig</em> :</p>
+    <pre class="wp-block-code"><code>$ kubectl config use-context &lt;context-name&gt;</code></pre>
+    <p>Установите запись контекста в kubeconfig:</p>
+    <pre class="wp-block-code"><code>kubectl config set-context &lt;context-name&gt;</code></pre>
+    <p>Если вы хотите изменить предпочтение пространства имен, используйте:</p>
+    <pre class="wp-block-code"><code>kubectl config set-context &lt;context-name&gt; --namespace=&lt;ns-name&gt;</code></pre>
+    <p>См. Текущий контекст:</p>
+    <pre class="wp-block-code"><code> kubectl config current-context</code></pre>
+    <h2>4. <span>Проверьте синтаксис файла yaml манифеста.</span></h2>
+    <p><span>Если вы создали yaml-файл развертывания и хотите проверить синтаксис, используйте команду:</span></p>
+    <pre class="wp-block-code"><code> kubectl create --dry-run --validate -f &lt;file&gt;.yaml</code></pre>
+    <p>Пример:</p>
+    <pre class="wp-block-code"><code>$ kubectl create --dry-run=client --validate -f hello-world.yml
+    pod/hello-world created (dry run)</code></pre>
+    <p>Если есть синтаксические ошибки, вы получите из вывода:</p>
+    <pre class="wp-block-code"><code>error: error parsing hello-world.yml: error converting YAML to JSON: yaml: line 12: did not find expected '-' indicator</code></pre>
+    <h2>5. О<span class="Y2IQFc" lang="ru">чистите </span>&nbsp;узел при удалении локальных данных.</h2>
+    <p><span>Узел может быть очищен, а также очищены локальные данные, используемые запущенными контейнерами.&nbsp;Для этого используется синтаксис команды:</span></p>
+    <pre class="wp-block-code"><code>kubectl drain &lt;node-name&gt; --ignore-daemonsets=true --delete-local-data=true</code></pre>
+    <p><span>Для принудительного слива вы можете добавить&nbsp;</span><strong><code>--force</code>&nbsp;</strong><span>флаг, хотя это не рекомендуется.</span></p>
+    <h2>6. <span>Примените файлы и папки yaml.</span></h2>
+    <p><span>Вы можете использовать&nbsp;аргумент&nbsp;</span><em><span>apply,</span></em><span>&nbsp;чтобы применить конфигурацию к ресурсу по имени файла или стандартному вводу.&nbsp;Синтаксис команды:</span></p>
+    <pre class="wp-block-code"><code>kubectl apply -f &lt;file-name&gt;.yaml
+    # Or for json:
+    kubectl apply -f &lt;file-name&gt;.json</code></pre>
+    <p>Для папки с несколькими ямл-филами используйте:</p>
+    <pre class="wp-block-code"><code>kubectl apply -R -f . # If files are in current working directory</code></pre>
+    <p>С абсолютным путем:</p>
+    <pre class="wp-block-code"><code>kubectl apply -R -f /path/to/yaml/files</code></pre>
+    <h2 id="h-7-create-time-saving-aliases"><span>7. Создавайте псевдонимы для экономии времени.</span></h2>
+    <p><span>Вы также можете создать несколько псевдонимов, которые значительно ускорят использование командной строки.</span></p>
+    <pre class="wp-block-code"><code>$ vim ~/.bashrc
+    # kubectl alias
+    alias k='kubectl'
+
+    # Create resources
+    alias kcf='kubectl create -f'
+    alias kaf='kubectl apply -f'
+
+    # List resources
+    alias kgp='kubectl get pods'
+    alias kgpa='kubectl get pods --all-namespaces'
+    alias kgd='kubectl get deployments'
+    alias kgs='kubectl get service'
+    alias kgh='kubectl get hpa'
+
+    # Delete resources
+    alias kd='kubectl delete'
+    alias kdp='kubectl delete pods'
+    alias kdd='kubectl delete deployments'
+    alias kgs='kubectl delete service'</code></pre>
+    <h2 id="h-8-start-a-temporary-pod-that-dies-on-exit"><span>8. Запустите временный модуль, который умирает при выходе.</span></h2>
+    <p><span>Вы можете быстро создать временный модуль с сеансом оболочки для целей тестирования, который будет уничтожен при выходе.</span></p>
+    <pre class="wp-block-code"><code>kubectl run --rm -it --image=&lt;image&gt; &lt;podname&gt; -- sh</code></pre>
+    <p>Пример:</p>
+    <pre class="wp-block-code"><code>$ kubectl run --rm -it --image=alpine alpine -- sh
+    If you don't see a command prompt, try pressing enter.
+    / # apk update
+    fetch http://dl-cdn.alpinelinux.org/alpine/v3.12/main/x86_64/APKINDEX.tar.gz
+    fetch http://dl-cdn.alpinelinux.org/alpine/v3.12/community/x86_64/APKINDEX.tar.gz
+    v3.12.1-82-g0e1cfdcae4 [http://dl-cdn.alpinelinux.org/alpine/v3.12/main]
+    v3.12.1-85-gd70a46ae6d [http://dl-cdn.alpinelinux.org/alpine/v3.12/community]
+    OK: 12747 distinct packages available
+
+    / # apk add wget curl vim
+    (1/12) Installing ca-certificates (20191127-r4)
+    (2/12) Installing nghttp2-libs (1.41.0-r0)
+    (3/12) Installing libcurl (7.69.1-r2)
+    (4/12) Installing curl (7.69.1-r2)
+    (5/12) Installing xxd (8.2.0735-r0)
+    (6/12) Installing lua5.3-libs (5.3.5-r6)
+    (7/12) Installing ncurses-terminfo-base (6.2_p20200523-r0)
+    (8/12) Installing ncurses-libs (6.2_p20200523-r0)
+    (9/12) Installing vim (8.2.0735-r0)
+    (10/12) Installing libunistring (0.9.10-r0)
+    (11/12) Installing libidn2 (2.3.0-r0)
+    (12/12) Installing wget (1.20.3-r1)
+    Executing busybox-1.31.1-r19.trigger
+    Executing ca-certificates-20191127-r4.trigger
+    OK: 39 MiB in 26 packages
+
+    / # curl google.com
+    &lt;HTML&gt;&lt;HEAD&gt;&lt;meta http-equiv="content-type" content="text/html;charset=utf-8"&gt;
+    &lt;TITLE&gt;301 Moved&lt;/TITLE&gt;&lt;/HEAD&gt;&lt;BODY&gt;
+    &lt;H1&gt;301 Moved&lt;/H1&gt;
+    The document has moved
+    &lt;A HREF="http://www.google.com/"&gt;here&lt;/A&gt;.
+    &lt;/BODY&gt;&lt;/HTML&gt;
+
+    / # exit
+    Session ended, resume using 'kubectl attach alpine -c alpine -i -t' command when the pod is running
+    pod "alpine" deleted
+
+    $ kubectl get pods
+    NAME     READY   STATUS        RESTARTS   AGE
+    alpine   0/1     Terminating   0          80s</code></pre>
+    <h2 id="h-9-create-a-namespace"><span>9. Создайте пространство имен.</span></h2>
+    <p><span>Пространство имен создается с помощью команды:</span></p>
+    <pre class="wp-block-code"><code>kubectl create namespace &lt;namespace-name&gt;</code></pre>
+    <p>Или же</p>
+    <pre class="wp-block-code"><code>kubectl create ns &lt;namespace-name&gt;</code></pre>
+    <p>Чтобы переключиться в пространство имен для всех операций, используйте:</p>
+    <pre class="wp-block-code"><code>$ kubectl config get-contexts
+    $ kubectl config set-context &lt;context-name&gt; --namespace=&lt;namespace-name&gt;</code></pre>
+    <p>Примеры:</p>
+    <pre class="wp-block-code"><code>$ kubectl create ns dev
+    namespace/dev created
+
+    $ kubectl get ns dev -o yaml
+    apiVersion: v1
+    kind: Namespace
+    metadata:
+      creationTimestamp: "2020-12-10T08:19:10Z"
+      managedFields:
+      - apiVersion: v1
+        fieldsType: FieldsV1
+        fieldsV1:
+          f:status:
+            f:phase: {}
+        manager: kubectl-create
+        operation: Update
+        time: "2020-12-10T08:19:10Z"
+      name: dev
+      resourceVersion: "592755"
+      selfLink: /api/v1/namespaces/dev
+      uid: 8cd5639a-85db-4c84-927d-344bdec9acba
+    spec:
+      finalizers:
+      - kubernetes
+    status:
+      phase: Active</code></pre>
+    <h2 id="h-10-run-shell-command-in-a-pod-without-tty"><span>10. Запустите команду оболочки в Pod без tty.</span></h2>
+    <p><span>Давайте создадим модуль, работающий в фоновом режиме.</span></p>
+    <pre class="wp-block-code"><code>cat &lt;&lt;EOF | kubectl apply -f -
+    apiVersion: v1
+    kind: Pod
+    metadata:
+      name: ubuntu
+      labels:
+        app: ubuntu
+    spec:
+      containers:
+      - name: ubuntu
+        image: ubuntu:latest
+        command: ["/bin/sleep", "3650d"]
+        imagePullPolicy: IfNotPresent
+      restartPolicy: Always
+    EOF</code></pre>
+    <p>Подтвердите, что Pod запущен:</p>
+    <pre class="wp-block-code"><code>$ kubectl get pods ubuntu
+    NAME     READY   STATUS    RESTARTS   AGE
+    ubuntu   1/1     Running   0          14s</code></pre>
+    <p>Запуск сеанса оболочки с модулем:</p>
+    <pre class="wp-block-code"><code>$ kubectl exec --stdin --tty ubuntu -- sh
+    # exit
+
+    $ kubectl exec --stdin --tty ubuntu -- /bin/bash
+    root@ubuntu:/# exit
+    exit</code></pre>
+    <p>Запуск команды прямо в контейнере без tty.</p>
+    <pre class="wp-block-code"><code>$ kubectl exec -it ubuntu -- ls -l /etc/hosts
+    -rw-r--r-- 1 root root 205 Dec 10 08:25 /etc/hosts
+
+    $ kubectl exec -it ubuntu -- apt update
+    kubectl exec -ti busybox -- nslookup &lt;Pod-ip&gt;
+    $ kubectl exec -it ubuntu -- cat /etc/os-release
+    NAME="Ubuntu"
+    VERSION="20.04.1 LTS (Focal Fossa)"
+    ID=ubuntu
+    ID_LIKE=debian
+    PRETTY_NAME="Ubuntu 20.04.1 LTS"
+    VERSION_ID="20.04"
+    HOME_URL="https://www.ubuntu.com/"
+    SUPPORT_URL="https://help.ubuntu.com/"
+    BUG_REPORT_URL="https://bugs.launchpad.net/ubuntu/"
+    PRIVACY_POLICY_URL="https://www.ubuntu.com/legal/terms-and-policies/privacy-policy"
+    VERSION_CODENAME=focal
+    UBUNTU_CODENAME=focal</code></pre>
+    <p>Убить Pod.</p>
+    <pre class="wp-block-code"><code>$ kubectl delete pod ubuntu
+    pod "ubuntu" deleted</code></pre>
+    <h2 id="h-11-check-environment-variables-in-a-pod"><strong><span>11.</span></strong><span>&nbsp;Проверьте переменные среды в модуле.</span></h2>
+    <p><span>Чтобы перечислить все переменные среды в модуле, используйте команду:</span></p>
+    <pre class="wp-block-code"><code>$ kubectl exec &lt;pod&gt; -- env</code></pre>
+    <p>Пример</p>
+    <pre class="wp-block-code"><code>$ kubectl exec ubuntu -- env
+    PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+    HOSTNAME=ubuntu
+    KUBERNETES_PORT_443_TCP_ADDR=172.20.0.1
+    KUBERNETES_SERVICE_HOST=172.20.0.1
+    KUBERNETES_SERVICE_PORT=443
+    KUBERNETES_SERVICE_PORT_HTTPS=443
+    KUBERNETES_PORT=tcp://172.20.0.1:443
+    KUBERNETES_PORT_443_TCP=tcp://172.20.0.1:443
+    KUBERNETES_PORT_443_TCP_PROTO=tcp
+    KUBERNETES_PORT_443_TCP_PORT=443
+    HOME=/root</code></pre>
+    <h2 id="h-12-get-explanation-of-resource-usage"><span>12. Получите объяснение использования ресурсов.</span></h2>
+    <p><span>Синтаксис команды:</span></p>
+    <pre class="wp-block-code"><code>$ kubectl explain &lt;resource&gt;</code></pre>
+    <p>Примеры:</p>
+    <pre class="wp-block-code"><code>kubectl explain pods
+    kubectl explain deploy
+    kubectl explain service</code></pre>
+    <p>Объясните поля.</p>
+    <pre class="wp-block-code"><code>kubectl explain deploy.spec
+    kubectl explain deploy.spec.replicas
+    kubectl explain pod.metadata.namespace</code></pre>
+    <h2 id="h-13-get-resources-sorted-by-name"><span>13. Сортировка ресурсов по названию.</span></h2>
+    <p><span>Чтобы перечислить ресурсы, отсортированные по имени, вы будете использовать.</span></p>
+    <pre class="wp-block-code"><code>kubectl get &lt;resource&gt; --sort-by=.metadata.name</code></pre>
+    <p>Примеры.</p>
+    <pre class="wp-block-code"><code>$ kubectl get pods --sort-by=.metadata.name
+    NAME     READY   STATUS    RESTARTS   AGE
+    ubuntu   1/1     Running   0          10m
+
+    $ kubectl get svc --sort-by=.metadata.name --all-namespaces
+    NAMESPACE     NAME         TYPE        CLUSTER-IP    EXTERNAL-IP   PORT(S)         AGE
+    kube-system   kube-dns     ClusterIP   172.20.0.10   &lt;none&gt;        53/UDP,53/TCP   2d11h
+    default       kubernetes   ClusterIP   172.20.0.1    &lt;none&gt;        443/TCP         2d11h</code></pre>
+    <h2 id="h-14-generate-a-pod-manifest-yaml-file"><span>14. Создайте YAML-файл манифеста модуля.</span></h2>
+    <p><span>Вы можете использовать&nbsp;</span><em><span>kubectl run</span></em><span>&nbsp;для создания файла манифеста yaml для развертывания Pods.</span></p>
+    <p><span>Страница справки по командам.</span></p>
+    <pre class="wp-block-code"><code>kubectl run pod --help</code></pre>
+    <p>Следующая команда печатает соответствующие объекты API, не создавая их:</p>
+    <pre class="wp-block-code"><code>$  kubectl run nginx --image=nginx --restart=Never --dry-run=client -o yaml</code></pre>
+    <p>С ограничениями памяти и ЦП:</p>
+    <pre class="wp-block-code"><code>kubectl run nginx --image=nginx --restart=Never --limits='cpu=300m,memory=512Mi' --dry-run=client -o yaml</code></pre>
+    <p>С запросами и ограничениями как ЦП, так и памяти.</p>
+    <pre class="wp-block-code"><code>kubectl run nginx --image=nginx --restart=Never --requests='cpu=100m,memory=256Mi' --limits='cpu=300m,memory=512Mi' --dry-run=client -o yaml</code></pre>
+    <p>Вы можете направить вывод в файл.</p>
+    <pre class="wp-block-code"><code>kubectl run nginx --image=nginx --restart=Never --dry-run=client -o yaml &gt;nginx-pod.yaml</code></pre>
+    <p>Затем вы можете создать модуль, применив файл.</p>
+    <pre class="wp-block-code"><code>$ kubectl apply -f ./nginx-pod.yaml
+    pod/nginx created</code></pre>
+    <p>Подтвердите, что Pod запущен:</p>
+    <pre class="wp-block-code"><code>$ kubectl get pod nginx
+    NAME    READY   STATUS    RESTARTS   AGE
+    nginx   1/1     Running   0          31s</code></pre>
+    <p>Удалить Pod.</p>
+    <pre class="wp-block-code"><code>$ kubectl delete pod nginx
+    pod "nginx" deleted</code></pre>
+    <h2 id="h-15-generate-a-deployment-deployment-yaml-file"><span>15. Создайте файл YAML для развертывания.</span></h2>
+    <p><span>Аналогичные команды генерации применяются для типов ресурсов развертывания.&nbsp;Только то, что мы не пройдем</span><span style="font-size: 16px;">&nbsp;</span><strong style="font-size: 16px;">–restart=Never</strong><span style="font-size: 16px;">.</span></p>
+    <pre class="wp-block-code"><code>kubectl create deploy nginx --image=nginx  --replicas=3 --dry-run=client -o yaml</code></pre>
+    <p>Записать в файл</p>
+    <pre class="wp-block-code"><code>kubectl create deploy nginx --image=nginx  --replicas=3 --dry-run=client -o yaml &gt;nginx-deployment.yml</code></pre>
+    <p>Вы можете изменить файл и применить создание ресурсов.</p>
+    <pre class="wp-block-code"><code>$ kubectl apply -f nginx-deployment.yml
+    deployment.apps/nginx created</code></pre>
+    <p>Проверить развертывание.</p>
+    <pre class="wp-block-code"><code>$ kubectl get deploy nginx
+    NAME    READY   UP-TO-DATE   AVAILABLE   AGE
+    nginx   3/3     3            3           37s</code></pre>
+    <p>Список модулей, соответствующих Nginx.</p>
+    <pre class="wp-block-code"><code>$  kubectl get pods -l app=nginx
+    NAME                    READY   STATUS    RESTARTS   AGE
+    nginx-f89759699-6hcng   1/1     Running   0          70s
+    nginx-f89759699-dvqhf   1/1     Running   0          70s
+    nginx-f89759699-hgbtq   1/1     Running   0          70s</code></pre>
+    <p>Удалить развертывание.</p>
+    <pre class="wp-block-code"><code>$ kubectl delete deploy nginx
+    deployment.apps "nginx" deleted</code></pre>
+    <h2 id="h-16-expose-pod-or-deployment-on-a-service"><span>16. Предоставление доступа к модулю или развертыванию в службе.</span></h2>
+    <p><span>Используйте команду kubectl expose, чтобы сделать развертывание или Pod доступными на ClusterIP или NodePort.</span></p>
+    <pre class="wp-block-code"><code>$ kubectl expose -h</code></pre>
+    <p>См. Пример ниже.</p>
+    <pre class="wp-block-code"><code>$ kubectl expose deployment nginx --port=80 --type=ClusterIP
+    service/nginx exposed
+
+    $ kubectl get svc nginx
+    NAME    TYPE        CLUSTER-IP     EXTERNAL-IP   PORT(S)   AGE
+    nginx   ClusterIP   172.20.29.63   &lt;none&gt;        80/TCP    17s</code></pre>
+    <p><span>Поддерживаемые типы для службы:&nbsp;</span><em><span>ClusterIP</span></em><span>&nbsp;,&nbsp;</span><em><span>NodePort</span></em><span>&nbsp;,&nbsp;</span><em><span>LoadBalancer</span></em><span>&nbsp;или&nbsp;</span><em><span>ExternalName</span></em><span>&nbsp;.</span></p>
+    <pre class="wp-block-code"><code>$ kubectl expose deployment nginx --port=80 --type=NodePort
+    $ kubectl get svc nginx
+    NAME    TYPE       CLUSTER-IP     EXTERNAL-IP   PORT(S)        AGE
+    nginx   NodePort   172.20.32.97   &lt;none&gt;        80:30292/TCP   3s</code></pre>
+    <p><span>В этом другом примере создается служба для модуля&nbsp;</span><strong><span>redis</span></strong><span>&nbsp;, который обслуживает порт&nbsp;</span><em><span>6379</span></em><span>&nbsp;с именем «redis».</span></p>
+    <pre class="wp-block-code"><code> $ kubectl expose pod redis --port=6379 --name=redis</code></pre>
+    <p>Вы также можете вручную указать порт, предоставляемый контейнером (порт приложения).</p>
+    <pre class="wp-block-code"><code>$ kubectl expose pod redis  --type=ClusterIP --port=6379 --target-port=6379</code></pre>
+    <h2 id="h-17-scale-up-pods-in-a-deployment"><span>17. Масштабирование модулей в развертывании.</span></h2>
+    <p><span>Вы можете увеличить количество модулей в развертывании, не редактируя какой-либо файл.</span></p>
+    <pre class="wp-block-code"><code>$ kubectl get deploy
+    NAME    READY   UP-TO-DATE   AVAILABLE   AGE
+    nginx   3/3     3            3           7h
+
+    $ kubectl scale --replicas=4 deployment nginx
+    deployment.apps/nginx scaled
+
+    $ kubectl get deploy
+    NAME    READY   UP-TO-DATE   AVAILABLE   AGE
+    nginx   4/4     4            4           7h3m
+
+    $ kubectl get pods -l app=nginx
+    NAME                    READY   STATUS    RESTARTS   AGE
+    nginx-f89759699-7x7q7   1/1     Running   0          2m21s
+    nginx-f89759699-jz9cj   1/1     Running   0          7h3m
+    nginx-f89759699-nm2nk   1/1     Running   0          7h3m
+    nginx-f89759699-ppdzr   1/1     Running   0          7h3m
+
+    $ kubectl scale --replicas=3 deployment nginx
+    deployment.apps/nginx scaled
+
+    $ kubectl get deploy
+    NAME    READY   UP-TO-DATE   AVAILABLE   AGE
+    nginx   3/3     3            3           7h4m</code></pre>
+    <h2 id="h-18-migrate-all-pods-in-a-node-and-make-it-unschedulable"><span>18. Перенесите все модули в узел и сделайте его недоступным для планирования.</span></h2>
+    <p><span>Определите узел, над которым нужно действовать:</span></p>
+    <pre class="wp-block-code"><code>$ kubectl get nodes</code></pre>
+    <p>Затем скажите Kubernetes, чтобы он опустошил узел:</p>
+    <pre class="wp-block-code"><code>$ kubectl drain &lt;node-name&gt;</code></pre>
+    <p>Возможно, вам придется игнорировать наборы демонов и удалить данные локального контейнера.</p>
+    <pre class="wp-block-code"><code>$ kubectl drain  &lt;node-name&gt; --delete-local-data --ignore-daemonsets</code></pre>
+    <p>Скажите Kubernetes, чтобы он прекратил планировать новые поды на ноде:</p>
+    <pre class="wp-block-code"><code>$ kubectl cordon &lt;node-name&gt;</code></pre>
+    <p>Чтобы возобновить планирование на узле, используйте команду:</p>
+    <pre class="wp-block-code"><code>$ kubectl uncordon &lt;node-name&gt;</code></pre>
+    <h2 id="h-19-create-multiple-containers-in-a-pod"><span>19. Создание нескольких контейнеров в модуле</span></h2>
+    <p><span>Сначала сгенерируйте файл манифеста Pod.&nbsp;Мы создадим модуль под названием&nbsp;</span><strong><span>mypod</span></strong><span>&nbsp;с&nbsp;изображением&nbsp;</span><em><span>ubuntu</span></em><span>&nbsp;.</span></p>
+    <pre class="wp-block-code"><code>kubectl run mypod --image=nginx --restart=Never --dry-run=client -o yaml &gt;mypod.yaml</code></pre>
+    <p>Отредактируйте файл и добавьте другие контейнеры в названный модуль.</p>
+    <pre class="wp-block-code"><code>$ vim mypod.yaml
+    apiVersion: v1
+    kind: Pod
+    metadata:
+      creationTimestamp: null
+      labels:
+        run: mypod
+      name: mypod
+    spec:
+      containers:
+      - image: nginx
+        name: nginx
+      - image: redis
+        name: redis
+      dnsPolicy: ClusterFirst
+      restartPolicy: Never
+    status: {}</code></pre>
+    <p><span>Мы добавили два контейнера —&nbsp;</span><strong><span>nginx</span></strong><span>&nbsp;и&nbsp;</span><strong><span>redis.&nbsp;</span></strong><span>Чтобы применить конфигурации, выполните команду:</span></p>
+    <pre class="wp-block-code"><code>$ kubectl apply -f mypod.yaml
+    pod/mypod created</code></pre>
+    <p>Убедитесь, что в капсуле есть два контейнера.</p>
+    <pre class="wp-block-code"><code>$ kubectl get pod mypod
+    NAME    READY   STATUS    RESTARTS   AGE
+    mypod   2/2     Running   0          39s</code></pre>
+    <p>Очистить:</p>
+    <pre class="wp-block-code"><code>$ kubectl delete -f mypod.yaml
+    pod "mypod" deleted</code></pre>
+    <h2 id="h-20-create-service-account-role-and-roledinding"><span>20. Создание учетной записи службы, роли и привязки ролей</span></h2>
+    <p><span>Создайте сервис под названием demo.</span></p>
+    <pre class="wp-block-code"><code>$ kubectl create sa demo
+    serviceaccount/demo created</code></pre>
+    <p><span>Создайте роль с именем&nbsp;</span><strong><span>demo,</span></strong><span>&nbsp;которая позволяет пользователю выполнять «получение», «просмотр» и «список» для модулей, развертывания, ds, rs, sts:</span></p>
+    <pre class="wp-block-code"><code>$ kubectl create role demo --verb=get,list,watch --resource=pods,deploy,ds,rs,sts
+    role.rbac.authorization.k8s.io/demo created
+
+    # All verbs
+    $ kubectl create clusterrole demo --verb='*' --resource=pods,deploy,ds,rs,sts
+
+    # For cluster role
+    $ kubectl create clusterrole demo --verb=get,list,watch --resource=pods,deploy,ds,rs,sts
+    clusterrole.rbac.authorization.k8s.io/demo created</code></pre>
+    <p><span>Создайте RoleBinding для <strong>demo</strong></span><span>&nbsp;роли.</span></p>
+    <pre class="wp-block-code"><code>$ kubectl create rolebinding demo --role=demo --user=demo
+    rolebinding.rbac.authorization.k8s.io/demo created
+
+    # For Cluster role
+    $ kubectl create rolebinding demo --clusterrole==demo --user=demo
+
+    # Clusterrole binding
+    $ kubectl create clusterrolebinding demo-admin --clusterrole=demo --user=demo</code></pre>
+    <p>Подтверждать:</p>
+    <pre class="wp-block-code"><code>$ kubectl get sa,role,rolebinding
+    NAME                      SECRETS   AGE
+    serviceaccount/default    1         2d21h
+    serviceaccount/demo       1         4m48s
+    serviceaccount/newrelic   1         3h51m
+
+    NAME                                  CREATED AT
+    role.rbac.authorization.k8s.io/demo   2020-12-10T19:09:01Z
+
+    NAME                                         ROLE        AGE
+    rolebinding.rbac.authorization.k8s.io/demo   Role/demo   21s</code></pre>
+    <p>Подтвердить:</p>
+    <pre class="wp-block-code"><code>kubectl auth can-i create deployment --as demo # yes
+    kubectl auth can-i '*' ds --as demo # yes</code></pre>
+    <p>Очистить:</p>
+    <pre class="wp-block-code"><code>kubectl delete sa demo
+    kubectl delete role demo
+    kubectl delete clusterrole demo
+    kubectl delete rolebinding demo</code></pre>
+    <h2 id="h-21-get-logs-on-pod-s"><span>21. Получение журналов для пакетов</span></h2>
+    <p><span>Получить последние журналы на именованном поде:</span></p>
+    <pre class="wp-block-code"><code>$ kubectl get pods
+    NAME                    READY   STATUS    RESTARTS   AGE
+    newrelic-infra-hp8dt    1/1     Running   0          3h57m
+    newrelic-infra-r4bpg    1/1     Running   0          3h57m
+    nginx-f89759699-jz9cj   1/1     Running   0          8h
+    nginx-f89759699-nm2nk   1/1     Running   0          8h
+    nginx-f89759699-ppdzr   1/1     Running   0          8h
+    ubuntu                  1/1     Running   0          10h
+
+    $ kubectl logs newrelic-infra-r4bpg</code></pre>
+    <p>Следите за потоком логов в реальном времени.</p>
+    <pre class="wp-block-code"><code>$ kubectl logs newrelic-infra-r4bpg -f</code></pre>
+    <p>Получите последние журналы из всех модулей в развертывании:</p>
+    <pre class="wp-block-code"><code>$ kubectl get deployments
+    NAME    READY   UP-TO-DATE   AVAILABLE   AGE
+    nginx   3/3     3            3           8h
+
+    $ kubectl logs deploy/nginx
+    $ kubectl logs deploy/nginx -f</code></pre>
+    <p>Используйте регулярное выражение для извлечения журналов.</p>
+    <pre class="wp-block-code"><code>$ kubectl logs newrelic-infra-r4bpg | grep 'connect got id'
+
+    time="2020-12-10T15:19:37Z" level=info msg="connect got id" agent-guid=MjU4Mjg0NXxJTkZSQXxOQXw0NDQ3ODMzNDM1Nzk0NDYyMjgx agent-id=4447833435794462281 component=IdentityConnectService</code></pre>
+    <p>Записать вывод в файл:</p>
+    <pre class="wp-block-code"><code>$ kubectl logs newrelic-infra-r4bpg | grep 'connect got id' &gt; logs.txt</code></pre>
+    <p>Распечатайте журналы для предыдущего экземпляра контейнера в модуле, если он существует.</p>
+    <pre class="wp-block-code"><code>kubectl logs &lt;pod-name&gt; --previous</code></pre>
+    <h2 id="h-22-get-top-pods"><span>22. Получите лучшие стручки</span></h2>
+    <p><span>Получите лучшие модули использования ресурсов.</span></p>
+    <pre class="wp-block-code"><code>$ kubectl top pod</code></pre>
+    <p>Получите лучшие модули с высокой загрузкой ЦП:</p>
+    <pre class="wp-block-code"><code>$ kubectl top pod --sort-by='cpu'</code></pre>
+    <p>Фильтр с помощью меток.</p>
+    <pre class="wp-block-code"><code>$ kubectl top pod -l 'app=nginx' --sort-by='cpu'
+    NAME                    CPU(cores)   MEMORY(bytes)
+    nginx-f89759699-jz9cj   0m           2Mi
+    nginx-f89759699-nm2nk   0m           2Mi
+    nginx-f89759699-ppdzr   0m           2Mi</code></pre>
+    <p>Получите только один модуль с максимальной загрузкой ЦП и запишите вывод в файл.</p>
+    <pre class="wp-block-code"><code>$ kubectl top pod -l 'app=nginx' --sort-by='cpu' | awk 'NR==2{print $1}'
+    $ kubectl top pod -l 'app=nginx' --sort-by='cpu' | awk 'NR==2{print $1}' &gt;top_cpu.txt</code></pre>
+    <h2 id="h-23-roll-out-and-roll-back-deployment"><span>23. Развернуть и откатить развертывание</span></h2>
+    <p><span>Разверните контейнер Nginx.</span></p>
+    <pre class="wp-block-code"><code>$ kubectl create deploy web --replicas=2 --image=nginx:1.13.2
+    deployment.apps/web created
+
+    $ kubectl get deploy web
+    NAME   READY   UP-TO-DATE   AVAILABLE   AGE
+    web    2/2     2            2           16s</code></pre>
+    <p><span>Обновление развертывания для использования образа nginx версии&nbsp;</span><em><span>1.14.2</span></em></p>
+    <pre class="wp-block-code"><code># Syntax: $ kubectl set image CONTAINER_NAME_1=CONTAINER_IMAGE_1 ... CONTAINER_NAME_N=CONTAINER_IMAGE_N
+    $ kubectl set image deployment web nginx=nginx:1.14.2 --record
+    deployment.apps/web image updated</code></pre>
+    <p>Проверить статус внедрения</p>
+    <pre class="wp-block-code"><code>$ kubectl rollout status deployment/web
+    deployment "web" successfully rolled out</code></pre>
+    <p>Просмотрите историю развертывания развертывания:</p>
+    <pre class="wp-block-code"><code>$ kubectl rollout history deployment/web
+    deployment.apps/web
+    REVISION  CHANGE-CAUSE
+    1         kubectl set image deployment web nginx=nginx:1.14.2 --record=true</code></pre>
+    <p>Откат к предыдущему развертыванию:</p>
+    <pre class="wp-block-code"><code>$ kubectl rollout undo deployment web
+    deployment.apps/web rolled back</code></pre>
+    <p>Развертывание до конкретной версии</p>
+    <pre class="wp-block-code"><code>$ kubectl rollout undo deployment/web --to-revision=3</code></pre>
+    <h2 id="h-24-label-node-and-assign-pods-to-nodes"><span>24. Обозначьте узел и назначьте модули узлам.</span></h2>
+    <p><span>Как добавить метки к Node.</span></p>
+    <pre class="wp-block-code"><code>$ kubectl label nodes &lt;node-name&gt; &lt;label-key&gt;=&lt;label-value&gt;</code></pre>
+    <p>Пример:</p>
+    <pre class="wp-block-code"><code>kubectl label nodes k8snode01 disktype=ssd</code></pre>
+    <p>Затем вы можете назначить модули для узлов.</p>
+    <pre class="wp-block-code"><code>spec:
+      containers:
+      - name: nginx
+        image: nginx
+        imagePullPolicy: IfNotPresent
+      nodeSelector:
+        disktype: ssd</code></pre>
+    <h2 id="h-25-copy-files-to-and-from-pods"><span>25. Копирование файлов в модули и из модулей.</span></h2>
+    <p><span>В&nbsp;</span><em><span>kubectl CP</span></em><span>&nbsp;команды могут быть использованы для копирования файлов в стручках или из стручки.</span></p>
+    <pre class="wp-block-code"><code>$ kubectl cp --help</code></pre>
+    <p>В этом примере мы скопируем файлы из модуля в нашу локальную систему.</p>
+    <pre class="wp-block-code"><code>$ kubectl exec -ti mypod1 -- ls
+    bin  boot  dev	dump_ops_in_flight.txt	etc  home  lib	lib64  lost+found  media  mnt  opt  proc  root	run  sbin  session_ls.txt  srv	sys  tmp  usr  var
+
+    $ kubectl cp mypod1:/dump_ops_in_flight.txt dump_ops_in_flight.txt
+    tar: Removing leading `/' from member names
+
+    $ kubectl cp mypod1:/dump_ops_in_flight.txt session_ls.txt
+    tar: Removing leading `/' from member names</code></pre>
+    <p>Давайте подтвердим, что два скопированных файла доступны локально.</p>
+    <pre class="wp-block-code"><code>$ file dump_ops_in_flight.txt session_ls.txt
+    dump_ops_in_flight.txt: ASCII text
+    session_ls.txt:         ASCII text</code></pre>
+    <p>Скопируйте файл в Pod.</p>
+    <pre class="wp-block-code"><code>$ kubectl cp myfile.txt mypod1:/myfile.txt
+    $ kubectl exec -ti mypod1 -- ls
+    README.md  bin	boot  dev  dump_ops_in_flight.txt  etc	home  lib  lib64  lost+found  media  mnt  opt  proc  root  run	sbin  session_ls.txt  srv  sys	tmp  usr  var</code></pre>
+    <p><span>Дополнительные примеры см. На странице справки.</span></p>
+    <h2><span>26. Отладка DNS.</span></h2>
+    <p><span>Запустите модуль DNS Utils:</span></p>
+    <pre class="wp-block-code"><code>kubectl apply -f https://k8s.io/examples/admin/dns/dnsutils.yaml</code></pre>
+    <p>Подтвердите, что модуль запущен:</p>
+    <pre class="wp-block-code"><code>kubectl get pods dnsutils</code></pre>
+    <p>Запуск nslookup:</p>
+    <pre class="wp-block-code"><code>kubectl exec -i -t dnsutils -- nslookup &lt;dns-entry&gt;</code></pre>
+    <p>Или получить доступ к оболочке</p>
+    <pre class="wp-block-code"><code>kubectl exec -i -t dnsutils -- sh</code></pre>
+    <p>Проверка настроек конфигурации локального DNS:</p>
+    <pre class="wp-block-code"><code>kubectl exec -ti dnsutils -- cat /etc/resolv.conf</code></pre>
+    <p>Проверка того, запущены ли DNS Pods:</p>
+    <pre class="wp-block-code"><code>$ kubectl get pods --namespace=kube-system -l k8s-app=kube-dns
+    NAME                       READY   STATUS    RESTARTS   AGE
+    coredns-5c59fd465f-777cw   1/1     Running   0          29m
+    coredns-5c59fd465f-bwpj4   1/1     Running   0          29m
+    coredns-5c59fd465f-sdndq   1/1     Running   0          29m
+    coredns-5c59fd465f-wldl9   1/1     Running   0          29m</code></pre>
+    <p>Убедитесь, что конечные точки DNS доступны:</p>
+    <pre class="wp-block-code"><code>kubectl get endpoints kube-dns --namespace=kube-system</code></pre>
+    <div class="td-g-rec td-g-rec-id-content_bottom tdi_4 td_block_template_1"></div>
+    <footer>
+    <div class="author-box-wrap">
+    <div class="desc">
+    <p>&nbsp;</p>
+    </div>
+    </div>
+    </footer>
+    <div class="addtoany_share_save_container addtoany_content addtoany_content_bottom"><div class="a2a_kit a2a_kit_size_26 addtoany_list" data-a2a-url="https://infoit.com.ua/linux/shpargalka-po-kubectl-dlya-administratorov-kubernetes-i-podgotovka-k-ekzamenu-cka-2/" data-a2a-title="Шпаргалка по Kubectl для администраторов Kubernetes и подготовка к экзамену CKA" style="line-height: 26px;"><a class="a2a_button_facebook" href="/#facebook" title="Facebook" rel="nofollow noopener" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_facebook" style="background-color: rgb(24, 119, 242); width: 26px; line-height: 26px; height: 26px; background-size: 26px; border-radius: 4px;"><svg focusable="false" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><path fill="#FFF" d="M17.78 27.5V17.008h3.522l.527-4.09h-4.05v-2.61c0-1.182.33-1.99 2.023-1.99h2.166V4.66c-.375-.05-1.66-.16-3.155-.16-3.123 0-5.26 1.905-5.26 5.405v3.016h-3.53v4.09h3.53V27.5h4.223z"></path></svg></span><span class="a2a_label">Facebook</span></a><a class="a2a_button_twitter" href="/#twitter" title="Twitter" rel="nofollow noopener" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_twitter" style="background-color: rgb(29, 155, 240); width: 26px; line-height: 26px; height: 26px; background-size: 26px; border-radius: 4px;"><svg focusable="false" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><path fill="#FFF" d="M28 8.557a9.913 9.913 0 01-2.828.775 4.93 4.93 0 002.166-2.725 9.738 9.738 0 01-3.13 1.194 4.92 4.92 0 00-3.593-1.55 4.924 4.924 0 00-4.794 6.049c-4.09-.21-7.72-2.17-10.15-5.15a4.942 4.942 0 00-.665 2.477c0 1.71.87 3.214 2.19 4.1a4.968 4.968 0 01-2.23-.616v.06c0 2.39 1.7 4.38 3.952 4.83-.414.115-.85.174-1.297.174-.318 0-.626-.03-.928-.086a4.935 4.935 0 004.6 3.42 9.893 9.893 0 01-6.114 2.107c-.398 0-.79-.023-1.175-.068a13.953 13.953 0 007.55 2.213c9.056 0 14.01-7.507 14.01-14.013 0-.213-.005-.426-.015-.637.96-.695 1.795-1.56 2.455-2.55z"></path></svg></span><span class="a2a_label">Twitter</span></a><a class="a2a_button_email" href="/#email" title="Email" rel="nofollow noopener" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_email" style="background-color: rgb(1, 102, 255); width: 26px; line-height: 26px; height: 26px; background-size: 26px; border-radius: 4px;"><svg focusable="false" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><path fill="#FFF" d="M26 21.25v-9s-9.1 6.35-9.984 6.68C15.144 18.616 6 12.25 6 12.25v9c0 1.25.266 1.5 1.5 1.5h17c1.266 0 1.5-.22 1.5-1.5zm-.015-10.765c0-.91-.265-1.235-1.485-1.235h-17c-1.255 0-1.5.39-1.5 1.3l.015.14s9.035 6.22 10 6.56c1.02-.395 9.985-6.7 9.985-6.7l-.015-.065z"></path></svg></span><span class="a2a_label">Email</span></a><a class="a2a_button_reddit" href="/#reddit" title="Reddit" rel="nofollow noopener" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_reddit" style="background-color: rgb(255, 69, 0); width: 26px; line-height: 26px; height: 26px; background-size: 26px; border-radius: 4px;"><svg focusable="false" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><path d="M28.543 15.774a2.953 2.953 0 00-2.951-2.949 2.882 2.882 0 00-1.9.713 14.075 14.075 0 00-6.85-2.044l1.38-4.349 3.768.884a2.452 2.452 0 10.24-1.176l-4.274-1a.6.6 0 00-.709.4l-1.659 5.224a14.314 14.314 0 00-7.316 2.029 2.908 2.908 0 00-1.872-.681 2.942 2.942 0 00-1.618 5.4 5.109 5.109 0 00-.062.765c0 4.158 5.037 7.541 11.229 7.541s11.22-3.383 11.22-7.541a5.2 5.2 0 00-.053-.706 2.963 2.963 0 001.427-2.51zm-18.008 1.88a1.753 1.753 0 011.73-1.74 1.73 1.73 0 011.709 1.74 1.709 1.709 0 01-1.709 1.711 1.733 1.733 0 01-1.73-1.711zm9.565 4.968a5.573 5.573 0 01-4.081 1.272h-.032a5.576 5.576 0 01-4.087-1.272.6.6 0 01.844-.854 4.5 4.5 0 003.238.927h.032a4.5 4.5 0 003.237-.927.6.6 0 11.844.854zm-.331-3.256a1.726 1.726 0 111.709-1.712 1.717 1.717 0 01-1.712 1.712z" fill="#fff"></path></svg></span><span class="a2a_label">Reddit</span></a><a class="a2a_button_telegram" href="/#telegram" title="Telegram" rel="nofollow noopener" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_telegram" style="background-color: rgb(44, 165, 224); width: 26px; line-height: 26px; height: 26px; background-size: 26px; border-radius: 4px;"><svg focusable="false" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><path fill="#FFF" d="M25.515 6.896L6.027 14.41c-1.33.534-1.322 1.276-.243 1.606l5 1.56 1.72 5.66c.226.625.115.873.77.873.506 0 .73-.235 1.012-.51l2.43-2.363 5.056 3.734c.93.514 1.602.25 1.834-.863l3.32-15.638c.338-1.363-.52-1.98-1.41-1.577z"></path></svg></span><span class="a2a_label">Telegram</span></a><a class="a2a_dd addtoany_share_save addtoany_share" href="https://www.addtoany.com/share#url=https%3A%2F%2Finfoit.com.ua%2Flinux%2Fshpargalka-po-kubectl-dlya-administratorov-kubernetes-i-podgotovka-k-ekzamenu-cka-2%2F&amp;title=%D0%A8%D0%BF%D0%B0%D1%80%D0%B3%D0%B0%D0%BB%D0%BA%D0%B0%20%D0%BF%D0%BE%20Kubectl%20%D0%B4%D0%BB%D1%8F%20%D0%B0%D0%B4%D0%BC%D0%B8%D0%BD%D0%B8%D1%81%D1%82%D1%80%D0%B0%D1%82%D0%BE%D1%80%D0%BE%D0%B2%20Kubernetes%20%D0%B8%20%D0%BF%D0%BE%D0%B4%D0%B3%D0%BE%D1%82%D0%BE%D0%B2%D0%BA%D0%B0%20%D0%BA%20%D1%8D%D0%BA%D0%B7%D0%B0%D0%BC%D0%B5%D0%BD%D1%83%20CKA"><span class="a2a_svg a2a_s__default a2a_s_a2a" style="background-color: rgb(1, 102, 255); width: 26px; line-height: 26px; height: 26px; background-size: 26px; border-radius: 4px;"><svg focusable="false" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><g fill="#FFF"><path d="M14 7h4v18h-4z"></path><path d="M7 14h18v4H7z"></path></g></svg></span><span class="a2a_label a2a_localize" data-a2a-localize="inner,Share">Отправить</span></a></div></div><div class="code-block code-block-4" style="margin: 8px auto; text-align: center; display: block; clear: both;">
+    <script async="" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1546989267878249" crossorigin="anonymous" data-checked-head="true"></script>
+    <!-- Головна сторінка -->
+    <ins class="adsbygoogle" style="display: block; height: 0px;" data-ad-client="ca-pub-1546989267878249" data-ad-slot="4355364516" data-ad-format="auto" data-full-width-responsive="true" data-adsbygoogle-status="done" data-ad-status="unfilled"><div id="aswift_3_host" style="border: medium none; height: 0px; width: 787px; margin: 0px; padding: 0px; position: relative; visibility: visible; background-color: transparent; display: inline-block; overflow: hidden; opacity: 0;" tabindex="0" title="Advertisement" aria-label="Advertisement"><iframe id="aswift_3" name="aswift_3" style="left: 0px; position: absolute; top: 0px; border: 0px none; width: 787px; height: 0px;" sandbox="allow-forms allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts allow-top-navigation-by-user-activation" marginwidth="0" marginheight="0" vspace="0" hspace="0" allowtransparency="true" scrolling="no" src="https://googleads.g.doubleclick.net/pagead/ads?client=ca-pub-1546989267878249&amp;output=html&amp;h=280&amp;slotname=4355364516&amp;adk=2644533510&amp;adf=2046522066&amp;pi=t.ma~as.4355364516&amp;w=787&amp;fwrn=4&amp;fwrnh=100&amp;lmt=1665064562&amp;rafmt=1&amp;format=787x280&amp;url=https%3A%2F%2Finfoit.com.ua%2Flinux%2Fshpargalka-po-kubectl-dlya-administratorov-kubernetes-i-podgotovka-k-ekzamenu-cka-2%2F&amp;fwr=0&amp;fwrattr=true&amp;rpe=1&amp;resp_fmts=3&amp;wgl=1&amp;dt=1665064561253&amp;bpp=1&amp;bdt=2048&amp;idt=339&amp;shv=r20221003&amp;mjsv=m202209290101&amp;ptt=9&amp;saldr=aa&amp;abxe=1&amp;prev_fmts=0x0%2C787x197%2C787x197&amp;nras=1&amp;correlator=4824109469608&amp;frm=20&amp;pv=1&amp;ga_vid=1016485242.1665064560&amp;ga_sid=1665064562&amp;ga_hid=177815262&amp;ga_fc=1&amp;u_tz=180&amp;u_his=1&amp;u_h=1440&amp;u_w=2560&amp;u_ah=1422&amp;u_aw=2519&amp;u_cd=24&amp;u_sd=1.5&amp;adx=224&amp;ady=28045&amp;biw=1663&amp;bih=1023&amp;scr_x=0&amp;scr_y=819&amp;eid=44759875%2C44759926%2C44759842%2C31070183%2C42531705%2C44769306%2C44774605%2C44773747%2C31067826&amp;oid=2&amp;pvsid=1098886100294636&amp;tmod=1372376856&amp;nvt=1&amp;ref=https%3A%2F%2Fyandex.ru%2F&amp;eae=0&amp;fc=1920&amp;brdim=431%2C79%2C431%2C79%2C2519%2C18%2C1663%2C1099%2C1663%2C1023&amp;vis=1&amp;rsz=%7C%7CEebr%7C&amp;abl=CS&amp;pfx=0&amp;fu=128&amp;bc=31&amp;ifi=4&amp;uci=a!4&amp;btvi=1&amp;fsb=1&amp;xpc=Zy7yAfIuFQ&amp;p=https%3A//infoit.com.ua&amp;dtd=1050" data-google-container-id="a!4" data-google-query-id="CNCDl-7gy_oCFQsQigMd-yoAkw" data-load-complete="true" width="787" height="0" frameborder="0"></iframe></div></ins>
+    <script>
+        (adsbygoogle = window.adsbygoogle || []).push({});
+    </script></div>
+    <!-- AI CONTENT END 1 -->
+
+        
+      </div><!-- .entry-content -->
+
+      <footer class="entry-footer">
+
+                
+      <nav class="navigation post-navigation" role="navigation" aria-label="Записи">
+        <h2 class="screen-reader-text">Навигация по записям</h2>
+        <div class="nav-links"><div class="nav-previous"><a href="https://infoit.com.ua/linux/kak-pereslat-logi-v-grafana-loki-s-pomoshhyu-promtail/" rel="prev"><span class="screen-reader-text">Previous Post:</span>Как переслать логи в Grafana Loki с помощью Promtail</a></div><div class="nav-next"><a href="https://infoit.com.ua/linux/teleport-bezopasnyj-dostup-k-sistemam-linux-i-kubernetes/" rel="next"><span class="screen-reader-text">Next Post:</span>Teleport — безопасный доступ к системам Linux и Kubernetes</a></div></div>
+      </nav>
+      </footer><!-- .entry-footer -->
+
+    </article>
+  </body>
+</html>
