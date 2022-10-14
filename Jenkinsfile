@@ -1,13 +1,13 @@
 pipeline {
   agent { 
     node { 
-      label {"vpn-ams"}
+      label "vpn-ams"
     }
   }
 
   stages {
     stage ('build') {
-      step {
+      steps {
         sh 'app/build.sh'
       }      
     }
