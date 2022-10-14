@@ -8,7 +8,8 @@ pipeline {
   stages {
     stage ('build') {
       steps {
-        sh 'app/build.sh'
+        sh 'cd app'
+        sh './build.sh'
       }      
     }
   }
