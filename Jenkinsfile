@@ -8,8 +8,9 @@ pipeline {
   stages {
     stage ('build') {
       steps {
-        sh 'cd app'
-        sh 'build.sh'
+        dir('app') {
+          sh './build.sh'
+        }
       }      
     }
   }
