@@ -4,7 +4,9 @@ metadata:
   name: ilyin-website-ingress
   namespace: ilyin-website
   annotations:
-    kubernetes.io/ingress.class: nginx     
+    kubernetes.io/ingress.class: nginx
+    # this solves issue: All hosts are taken by other resources
+    acme.cert-manager.io/http01-edit-in-place: "true"    
     cert-manager.io/cluster-issuer: letsencrypt
 spec:
   tls:
