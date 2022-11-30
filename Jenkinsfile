@@ -1,26 +1,29 @@
 pipeline {
-  agent { 
-    node { 
-      label "vpn-ams"
+    agent { 
+        kubernetes { 
+            label 'jenkins/jenkins-agent' 
+        } 
     }
-  }
-
-  stages {
-    stage ('build') {
-      steps {
-        dir('app') {
-          sh './build.sh'
+    stages {
+        stage('Build') {
+            steps {
+                echo 'Building...'
+                dir("www/app") {
+                    sh "pwd"
+                }
+            }
         }
-      }      
+        stage('Test') {
+            steps {
+                echo 'Testing...'
+                sh "pwd"
+            }
+        }
+        stage('Deploy') {
+            steps {
+                echo 'Deploying...'
+                sh "pwd"
+            }
+        }
     }
-  }
-
-  post { 
-    unsuccessful { 
-        echo 'unsuccessful pipeline completion'
-    }
-    success {
-      echo 'Successful pipeline completion'
-    }
-  }
 }
